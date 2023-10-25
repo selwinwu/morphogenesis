@@ -1,0 +1,24 @@
+###Notes for TFM Analysis Codes###
+
+Plugins for codes:
+TFM_step1_ForPIVImages.ijm: Install MultiStackReg and TurboReg (find in Help --> Update ...)
+TFM_step2_LoopFTTC: Install FTTC (from Help --> Update...)
+tfm_quantification_ht_chris.m: copy natsort.m, natsortfiles.m, ReadImageJROI.m, and roi_to_mask.m to the same folder
+forcemap_radial_chris.m : copy redblue.m to the same folder
+
+
+TFM_step1_ForPIVImages.ijm aligns the WithCells to Ref (WithCells is the one being shifted for correction),
+TFM_step1_ForPIVImages (align ref to cells).ijm does the opposite.
+Usually the WithCells images has no significant xy drift from one timepoint to another.
+Thus, I prefer using the later code as I don't have to load the transformation matrices and align the GFP, RFP, or DIC channel.
+
+for plotting vectors on RGB or cropping image with Matlab codes, the timelapse image should first be saved as individual slice of .tif
+(use the save images from stack.ijm) 
+
+for tfm_quantification_ht.m, the ROI zip file contains ROIs manually drawn in ImageJ.
+The code supports multiple ROIs in one timepoint.
+But WILL CALCULATES TRACTION AND AREA FROM ALL ROIS IN THAT TIMEPOINT.
+(If you want to calculate traction for 2 different cells, then you need to separate them into 2 ROI zip) 
+The naming of ROI should be in the following format: slice - ROI
+eg. the first ROI in the first timepoint: 1-1
+(p.s. if you don't have multiple selection, can just treat it as the first ROI)
